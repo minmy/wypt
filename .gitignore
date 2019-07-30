@@ -1,0 +1,8 @@
+.idea
+out
+target
+generated
+classes
+*.log
+build
+*.iml

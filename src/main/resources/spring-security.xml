@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http pattern="/skin/**" security="none" />
+	<http pattern="/favicon.ico*" security="none" />
+
+	<http authentication-manager-ref="authenticationManager" entry-point-ref="customAuthenticationEntryPoint">
+		<!-- 登录页 -->
+		<intercept-url pattern="/login.action*" access="permitAll" />
+		<!-- 支付成功通知页 -->
+		<intercept-url pattern="/payaction/notify.action*" access="permitAll" />
+		<!-- 支付退款通知页 -->
+		<intercept-url pattern="/payaction/refundnotify.action*" access="permitAll" />
+		<!-- 初始化 -->
+		<intercept-url pattern="/init/**" access="permitAll" />
+		<!-- 接口 -->
+		<intercept-url pattern="/api/**" access="permitAll" />
+		<!-- 大信查询订单 -->
+		<intercept-url pattern="/verification/**" access="permitAll" />
+		<!-- 用户 -->
+		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER_MANAGE','ROLE_WECHAT_USER_MANAGE')" />
+		<!-- 角色 -->
+		<intercept-url pattern="/role/**" access="hasRole('ROLE_ROLE_MANAGE')" />
+		<!-- 接口资源 -->
+		<intercept-url pattern="/apiResource/**" access="hasRole('ROLE_API_RESOURE_MANAGE')" />
+		<!-- 接口角色 -->
+		<intercept-url pattern="/apiRole/**" access="hasRole('ROLE_API_ROLE_MANAGE')" />
+		<!-- 申请提现列表 -->
+		<intercept-url pattern="/apply/**" access="hasRole('ROLE_APPLY_LIST_MANAGE')" />
+		<!-- 团单列表 -->
+		<intercept-url pattern="/groupOrder/**" access="hasRole('ROLE_GROUP_ORDER_LIST_MANAGE')" />
+		<!-- 商家管理 -->
+		<intercept-url pattern="/business/**" access="hasRole('ROLE_BUSINESS_LIST_MANAGE')" />
+		<intercept-url pattern="/businessTerminal/**" access="hasRole('ROLE_BUSINESS_TERMINAL_LIST_MANAGE')" />
+		<!-- 附件 -->
+		<intercept-url pattern="/annex/**" access="permitAll" />
+		<!-- 行政区划 -->
+		<intercept-url pattern="/address/division/**" access="hasRole('ROLE_DIVISION_MANAGE')" />
+		<!-- 小区管理 -->
+		<intercept-url pattern="/address/community/**" access="hasRole('ROLE_COMMUNITY_MANAGE')" />
+		<!-- 核销管理 -->
+		<intercept-url pattern="/verify/**" access="hasRole('ROLE_VERIFY_MANAGE')" />
+
+		<!-- 其它 -->
+		<intercept-url pattern="/**" access="hasRole('ROLE_VISIT_MANAGE')" />
+
+		<!-- 自定义认证过滤器 -->
+		<custom-filter ref="customAuthenticationFilter" position="FORM_LOGIN_FILTER" />
+		<!-- 自定义退出成功处理器 -->
+		<logout logout-url="/doLogout.action" success-handler-ref="customLogoutSuccessHandler" />
+		<headers>
+			<!-- Iframe页面允许被其它页面嵌入 -->
+			<frame-options disabled="true" />
+		</headers>
+		<csrf request-matcher-ref="customRequiresCsrfMatcher" />
+	</http>
+
+	<!-- 认证管理器 -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+
+	<!-- 认证服务提供者 -->
+	<beans:bean id="customAuthenticationProvider" class="cn.sini.cgb.admin.identity.security.CustomAuthenticationProvider" />
+
+	<!-- 认证入口点 -->
+	<beans:bean id="customAuthenticationEntryPoint" class="cn.sini.cgb.admin.identity.security.CustomAuthenticationEntryPoint">
+		<beans:constructor-arg name="loginUrl" value="/login.action" />
+	</beans:bean>
+
+	<!-- 认证过滤器 -->
+	<beans:bean id="customAuthenticationFilter" class="cn.sini.cgb.admin.identity.security.CustomAuthenticationFilter">
+		<beans:constructor-arg name="filterProcessesUrl" value="/doLogin.action" />
+		<beans:property name="authenticationSuccessHandler" ref="customAuthenticationSuccessHandler" />
+		<beans:property name="authenticationFailureHandler" ref="customAuthenticationFailureHandler" />
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+	</beans:bean>
+
+	<!-- 登录认证成功处理器 -->
+	<beans:bean id="customAuthenticationSuccessHandler" class="cn.sini.cgb.admin.identity.security.CustomAuthenticationSuccessHandler" />
+
+	<!-- 登录认证失败处理器 -->
+	<beans:bean id="customAuthenticationFailureHandler" class="cn.sini.cgb.admin.identity.security.CustomAuthenticationFailureHandler" />
+
+	<!-- 退出登录处理器 -->
+	<beans:bean id="customLogoutSuccessHandler" class="cn.sini.cgb.admin.identity.security.CustomLogoutSuccessHandler" />
+
+	<!-- CSRF拦截地址匹配器 -->
+	<beans:bean id="customRequiresCsrfMatcher" class="cn.sini.cgb.admin.identity.security.CustomCsrfMatcher">
+		<beans:property name="allowedUrls">
+			<beans:set>
+				<!-- 登录 -->
+				<beans:value>/api/user/login.action</beans:value>
+				<!-- 个人信息 -->
+				<beans:value>/api/user/weChatCiphertext.action</beans:value>
+				<beans:value>/api/user/getWechatUserInfo.action</beans:value>
+				<beans:value>/api/user/saveWechatUserInfo.action</beans:value>
+				<!-- 用户分享 -->
+				<beans:value>/api/user/saveShare.action</beans:value>
+				<beans:value>/api/user/shareList.action</beans:value>
+				<beans:value>/api/user/saveInvited.action</beans:value>
+				<beans:value>/api/user/getShareRandomNumber.action</beans:value>
+				<!-- 关注 -->
+				<beans:value>/api/user/saveFollow.action</beans:value>
+				<beans:value>/api/user/followList.action</beans:value>
+				<!-- 团单 -->
+				<beans:value>/api/launchGroup/list.action</beans:value>
+				<beans:value>/api/launchGroup/save.action</beans:value>
+				<beans:value>/api/launchGroup/getById.action</beans:value>
+				<beans:value>/api/launchGroup/delete.action</beans:value>
+				<beans:value>/api/launchGroup/deleteCommodity.action</beans:value>
+				<beans:value>/api/launchGroup/release.action</beans:value>
+				<beans:value>/api/launchGroup/endImmediately.action</beans:value>
+				<beans:value>/api/launchGroup/sendGoods.action</beans:value>
+				<beans:value>/api/launchGroup/details.action</beans:value>
+				<beans:value>/api/launchGroup/pickUpGoods.action</beans:value>
+				<beans:value>/api/launchGroup/updateSelfExtractingTime.action</beans:value>
+				<beans:value>/api/launchGroup/distributionSlip.action</beans:value>
+				<beans:value>/api/launchGroup/QRCode.action</beans:value>
+				<!-- 标签 -->
+				<beans:value>/api/launchGroup/getLabelList.action</beans:value>
+				<!-- 附件 -->
+				<beans:value>/annex/upload.action</beans:value>
+				<beans:value>/annex/download.action</beans:value>
+				<beans:value>/annex/view.action</beans:value>
+				<beans:value>/annex/delete.action</beans:value>
+				<!-- 拼团首页 -->
+				<beans:value>/api/groupHome/list.action</beans:value>
+				<beans:value>/api/groupHome/details.action</beans:value>
+				<beans:value>/api/groupHome/preview.action</beans:value>
+				<beans:value>/api/groupHome/isSameCommunity.action</beans:value>
+				<!-- 订单 -->
+				<beans:value>/api/order/list.action</beans:value>
+				<beans:value>/api/order/add.action</beans:value>
+				<beans:value>/api/order/getPersonalInfo.action</beans:value>
+				<beans:value>/api/order/getCommodityDetails.action</beans:value>
+				<beans:value>/api/order/savePersonalInfo.action</beans:value>
+				<beans:value>/api/order/details.action</beans:value>
+				<beans:value>/api/order/uploadOrderPickUpPic.action</beans:value>
+				<beans:value>/api/order/getOrderPickUpPic.action</beans:value>
+				<beans:value>/api/order/cancelorder.action</beans:value>
+				<beans:value>/api/order/generateShareImage.action</beans:value>
+				<!-- 支付、退款 -->
+				<beans:value>/api/payaction/pay.action</beans:value>
+				<beans:value>/api/payaction/payment.action</beans:value>
+				<beans:value>/api/payaction/refund.action</beans:value>
+				<beans:value>/api/payaction/paynotice.action</beans:value>
+				<beans:value>/payaction/notify.action</beans:value>
+				<beans:value>/payaction/refundnotify.action</beans:value>
+				<beans:value>/api/payaction/paySuccess.action</beans:value>
+				<!-- 虚拟账户 -->
+				<beans:value>/api/vaccount/home.action</beans:value>
+				<beans:value>/api/vaccount/details.action</beans:value>
+				<!-- 提现申请 -->
+				<beans:value>/api/apply/save.action</beans:value>
+				<beans:value>/api/apply/list.action</beans:value>
+				<!-- 里长功能 -->
+				<beans:value>/api/precinctHead/isBrigadier.action</beans:value>
+				<beans:value>/api/precinctHead/list.action</beans:value>
+				<beans:value>/api/precinctHead/details.action</beans:value>
+				<beans:value>/api/precinctHead/review.action</beans:value>
+				<!-- 企业团 -->
+				<beans:value>/api/enterpriseGroup/save.action</beans:value>
+				<beans:value>/api/enterpriseGroup/getById.action</beans:value>
+				<beans:value>/api/enterpriseGroup/delete.action</beans:value>
+				<!-- 企业团下单 -->
+				<beans:value>/api/enterpriseOrder/add.action</beans:value>
+				<!-- 地址 -->
+				<beans:value>/api/address/getProvinceList.action</beans:value>
+				<beans:value>/api/address/getSubDivisionByCode.action</beans:value>
+				<!-- 商家 -->
+				<beans:value>/api/business/list.action</beans:value>
+				<!-- 核销相关接口 -->
+				<beans:value>/verification/queryorder.action</beans:value>
+				<beans:value>/verification/writeoff.action</beans:value>
+				<beans:value>/verification/checkwriteoff.action</beans:value>
+				<beans:value>/verification/correct.action</beans:value>
+				<beans:value>/api/verification/qrcode.action</beans:value>
+				<beans:value>/api/verification/mine.action</beans:value>
+				<!-- 积分 -->
+				<beans:value>/api/integral/list.action</beans:value>
+				<beans:value>/api/integral/upgrade.action</beans:value>
+				<beans:value>/api/integral/home.action</beans:value>
+				<beans:value>/api/integral/integrallist.action</beans:value>
+				<beans:value>/api/integral/check.action</beans:value>
+				<!-- 分享劵 -->
+				<beans:value>/api/shareticket/colonel.action</beans:value>
+				<beans:value>/api/shareticket/exchange.action</beans:value>
+				<beans:value>/api/shareticket/owner.action</beans:value>
+				<beans:value>/api/shareticket/ownerdetail.action</beans:value>
+				<beans:value>/api/shareticket/detailbycolonel.action</beans:value>
+				<beans:value>/api/shareticket/getbyshare.action</beans:value>
+			</beans:set>
+		</beans:property>
+	</beans:bean>
+</beans:beans>

@@ -1,0 +1,178 @@
+/* 头部 */
+.header {
+    background: #3b7bdd;
+    height: 60px;
+}
+
+.header img {
+    padding: 15px;
+}
+
+.header-user {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.user-info,
+.logout,
+.change-password {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 20px;
+    padding-left: 20px;
+}
+
+.user-info a,
+.logout a,
+.change-password a {
+    color: #cee0fc;
+    padding-left: 5px;
+}
+
+.user-info {
+    background: url(../images/icon_header_user.png) left center no-repeat;
+}
+
+.change-password {
+    background: url(../images/change-password.png) left center no-repeat;
+}
+
+.logout {
+    background: url(../images/icon_header_logout.png) left center no-repeat;
+}
+
+/* 左边栏目 */
+.left-menu {
+    width: 230px;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    box-shadow: 1px 0px 4px 0px rgba(204, 204, 204, 0.3);
+}
+
+.menu-item a, .sublevel-tabToggle {
+    display: block;
+    width: 100%;
+    color: #333;
+    box-sizing: border-box;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    outline: none;
+}
+
+.menu-item a.active, .menu-item a:hover {
+    background-color: #f0f1f2;
+}
+
+.menu-item .item-icon {
+    display: block;
+    height: 18px;
+    width: 18px;
+    float: left;
+    margin: 16px 12px 0 25px;
+}
+
+.menu-item .home-icon {
+    background: url("../images/home.png") no-repeat;
+}
+
+.menu-item .section-icon {
+    background: url("../images/section.png") no-repeat;
+}
+
+.menu-item .guidance-icon {
+    background: url("../images/guidance.png") no-repeat;
+}
+
+.menu-item .serve-icon {
+    background: url("../images/serve.png") no-repeat;
+}
+
+.menu-item .inventory-icon {
+    background: url("../images/inventory.png") no-repeat;
+}
+
+.menu-item .setting-icon {
+    background: url("../images/setting.png") no-repeat;
+}
+
+.menu-item .sync-icon {
+    background: url("../images/sync.png") no-repeat;
+}
+
+.menu-item .goods-icon {
+    background: url("../images/goods.png") no-repeat;
+}
+
+.menu-item .order-icon {
+    background: url("../images/order.png") no-repeat;
+}
+
+.menu-item .merchant-icon {
+    background: url("../images/merchant.png") no-repeat;
+}
+
+.menu-item .zdl-icon {
+    background: url("../images/zdl.png") no-repeat;
+}
+
+.menu-item .zzs-icon {
+    background: url("../images/zzs.png") no-repeat;
+}
+
+.menu-item .jxs-icon {
+    background: url("../images/jxs.png") no-repeat;
+}
+
+.menu-item .clickButton {
+    display: block;
+    float: right;
+    width: 6px;
+    height: 8px;
+    background: url("../images/packUp.png") no-repeat;
+    margin: 22px 25px 0 0;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    transition: -webkit-transform .3s ease-in-out;
+    -o-transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+}
+
+.menu-item .clickButton.active {
+    -webkit-transform: rotateZ(90deg);
+        -ms-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+}
+
+.menu-item .menu-sublevel-item {
+    display: none;
+    font-size: 14px;
+}
+
+.menu-item .menu-sublevel-item a {
+    padding-left: 55px;
+}
+
+.menu-item .menu-sublevel-item .sublevel-item-icon {
+    display: inline-block;
+    background: url("../images/circle.png") no-repeat;
+    width: 4px;
+    height: 4px;
+    vertical-align: middle;
+    margin: -1px 8px 0 0;
+}
+
+/* 内容区域 */
+.wrapper {
+	position: fixed;
+	top: 60px;
+	right: 0;
+	bottom: 0;
+	left: 230px;
+	background-color: #f0f0f0;
+	z-index: 2;
+    padding: 16px 16px 0 16px;
+}

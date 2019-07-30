@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 本次任务未执行完，又到了下一次任务时，自动忽略待执行的任务，不会加入队列或并行 -->
+	<scheduler id="customScheduler" pool-size="10" />
+
+	<!-- 所有定时器任务都要继承AbstractTask类。method的值只能为hasTransactional和notTransactional，前者有事物，后者无事物 -->
+	<scheduled-tasks scheduler="customScheduler">
+		<!-- 删除接口数据任务 -->
+		<!--<scheduled ref="deleteApiDataTask" method="hasTransactional" cron="0 0 0/1 * * ?" />-->
+		<!-- 团单自动结束定时任务 -->
+		<!-- <scheduled ref="groupOrderAutoFinishTask" method="hasTransactional" cron="0/15 * * * * ?" /> -->
+		<!-- 待付款订单自动取消定时任务 -->
+		<!-- <scheduled ref="orderCancelTask" method="hasTransactional" cron="0/15 * * * * ?" />-->
+		<!-- 待退款定时任务  -->
+		<!-- <scheduled ref="orderRefundTask" method="hasTransactional" cron="0 0/3 * * * ?" />-->
+		<!-- 统一退款任务  -->
+		<scheduled ref="refundTask" method="hasTransactional" cron="0/30 * * * * ?" />
+		<!-- 支付中状态订单 -->
+		<!--<scheduled ref="confirmPaymentTask" method="hasTransactional" cron="0 0/1 * * * ?" />-->
+		<!-- 退款中状态订单 -->
+		<!--<scheduled ref="confirmRefundTask" method="hasTransactional" cron="0 0/1 * * * ?" />-->
+		<!-- 发货提现任务  -->
+		<!--<scheduled ref="cashWithdrawalTask" method="hasTransactional" cron="0/30 * * * * ?" />-->
+		<!-- 企业付款到零钱任务  -->
+		<!-- <scheduled ref="applyCash" method="hasTransactional" cron="0/10 * * * * ?" />-->
+		<!-- 企业订单自动结束任务  -->
+		<!-- <scheduled ref="enterpriseOrderAutoFinishTask" method="hasTransactional" cron="0 0/1 * * * ?" />-->
+		<!-- 发送邮箱  -->
+		<scheduled ref="sendEmailTask" method="notTransactional" cron="0 * 8-23 * * ? " />
+	</scheduled-tasks>
+</beans:beans>

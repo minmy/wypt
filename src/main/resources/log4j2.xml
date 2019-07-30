@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%level][%d{yyyy-MM-dd HH:mm:ss}] %l%n%msg%n" />
+		</Console>
+
+		<RollingFile name="InfoFile"
+			fileName="${bundle:system:log.path}/info.log"
+			filePattern="${bundle:system:log.path}/${date:yyyy/MM/dd}/info-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout
+				pattern="[%level][%d{yyyy-MM-dd HH:mm:ss}] %l%n%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy fileIndex="nomax" />
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="InfoFile" />
+		</Root>
+	</Loggers>
+</Configuration>

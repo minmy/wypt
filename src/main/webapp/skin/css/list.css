@@ -1,0 +1,192 @@
+.list-box {
+	background-color: #fff;
+}
+
+.list-title {
+	font-size: 14px;
+	font-weight: 600;
+	padding: 10px 15px;
+}
+
+.list-search {
+	background-color: #f7f9fc;
+	line-height: 60px;
+	font-size: 14px;
+	padding: 0 15px;
+}
+
+.list-search input {
+	margin-right: 10px;
+	padding: 6px 3px;
+	width: 161px;
+	border: 1px solid #d3d9e3;
+}
+
+.list-search select {
+	margin-right: 10px;
+	border: 1px solid #d3d9e3;
+	vertical-align: middle;
+	padding: 3px 0 4px;
+	margin-top: -3px;
+}
+
+.list-search-button {
+	height: 30px;
+	width: 70px;
+	background-color: #3b7cdc;
+	color: #fff;
+	vertical-align: middle;
+	margin-top: -2px;
+	border: none;
+	border-radius: 3px;
+	margin-left: 20px;
+	cursor: pointer;
+	*height: 29px;
+	*line-height: 28px;
+}
+
+.list-search-button:hover {
+	background-color: #5894ee;
+}
+
+.list-message {
+	padding: 22px 15px;
+	font-size: 14px;
+}
+
+.list-message .list-button {
+	float: right;
+	color: #3b7cdc;
+	padding-bottom: 6px;
+	margin-top: -15px;
+}
+
+.list-message .list-button span {
+	display: inline-block;
+	width: 70px;
+	height: 26px;
+	line-height: 24px;
+	text-align: center;
+	border: 1px solid #99bdf2;
+	border-radius: 5px;
+	box-sizing: border-box;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.list-message .list-button span:hover {
+	background-color: #3b7cdc;
+	color: #fff;
+}
+
+.list-message .list-button i {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+}
+
+.list-message .list-button .add i {
+	background: url("../images/add.png") no-repeat;
+}
+
+.list-message .list-button .add:hover i {
+	background: url("../images/add_hover.png") no-repeat;
+}
+
+.list-message .list-button .return i {
+	background: url("../images/return.png") no-repeat;
+}
+
+.list-message .list-button .return:hover i {
+	background: url("../images/return_hover.png") no-repeat;
+}
+
+.list-message .list-button .del i {
+	background: url("../images/del.png") no-repeat;
+}
+
+.list-message .list-button .del:hover i {
+	background: url("../images/del_hover.png") no-repeat;
+}
+
+.list-message .list-button .export i {
+	background: url("../images/export.png") no-repeat;
+}
+
+.list-message .list-button .export:hover i {
+	background: url("../images/export_hover.png") no-repeat;
+}
+
+.list-message table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.list-message tr:nth-child(even) {
+	background-color: #f7f9fc;
+}
+
+.list-message tr, .list-message td {
+	border: 1px solid #e9ecf2;
+	height: 40px;
+}
+
+.list-message tr:hover {
+	background-color: #f7f9fc;
+}
+
+.list-message th {
+	background-color: #dce8fa;
+	color: #194484;
+	height: 42px;
+}
+
+.list-message td.center {
+	text-align: center;
+}
+
+.list-message td.green {
+	color: #42ab4f;
+}
+
+.list-message td.red {
+	color: #e42a16;
+}
+
+.list-message a {
+	color: #3b7cdc;
+	margin: 0 5px;
+}
+
+.list-paging {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.list-paging span {
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+	width: 24px;
+	text-align: center;
+	border: 1px solid #e9ecf2;
+	color: #666;
+	cursor: pointer;
+}
+
+.list-paging span.active {
+	background-color: #3b7cdc;
+	color: #fff;
+}
+
+.list-paging span:hover {
+	background-color: #3b7cdc;
+	color: #fff;
+}
+
+.list-paging select {
+	border: 1px solid #e9ecf2;
+	height: 26px;
+	vertical-align: bottom;
+}

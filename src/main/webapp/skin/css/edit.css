@@ -1,0 +1,266 @@
+.edit-box {
+	background-color: #fff;
+	font-size: 14px;
+}
+
+.edit-title {
+	font-weight: 600;
+	padding: 10px 15px;
+}
+
+.edit-form {
+	margin: 10px 30px;
+	padding-bottom: 50px;
+}
+
+.edit-form table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.edit-form tr {
+	height: 45px;
+}
+
+.edit-form .right {
+	text-align: right;
+	padding-right: 10px;
+}
+
+.edit-form .upload {
+	color: #3b7cdc;
+}
+
+.edit-form .upload:hover {
+	color: #5894ee;
+}
+
+.edit-form .upload img {
+	width: 13px;
+	height: 12px;
+	vertical-align: middle;
+	margin: -2px 3px 0 15px;
+}
+
+.edit-form span.required {
+	color: #ff0000;
+	display: inline-block;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+.edit-form input[type="text"], .edit-form input[type="password"], .edit-form textarea {
+	width: 100%;
+	padding: 6px 3px;
+	border: 1px solid #d3d9e3;
+	box-sizing: border-box;
+}
+
+.edit-form input.placeholder{
+	color: #999;
+}
+
+.edit-form select {
+	width: 100%;
+	border: 1px solid #d3d9e3;
+	box-sizing: border-box;
+	padding: 3px 0 4px;
+}
+
+.edit-form input[type="radio"] {
+	vertical-align: middle;
+	margin-top: -1px;
+	margin-right: 6px;
+}
+
+.edit-form input[type="radio"].last {
+	margin-left: 15px;
+}
+
+.edit-button {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.edit-button button, .edit-button .submitButton, .edit-button .deleteButton {
+	text-align: center;
+	height: 30px;
+	width: 70px;
+	background-color: #3b7cdc;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	margin: 0 10px;
+	cursor: pointer;
+	height: 30px;
+}
+
+.edit-button button:hover {
+	background-color: #5894ee;
+}
+
+/*办事指南样式*/
+.bszn-form {
+	margin: 0;
+	padding-bottom: 50px;
+}
+
+.bszn-table {
+	background-color: #f7f9fc;
+	padding: 10px 30px;
+}
+
+.edit-message {
+	margin-top: 20px;
+	padding: 0 30px;
+}
+
+.edit-message label {
+	display: block;
+	color: #3b7cdc;
+	margin: 16px 0 6px;
+	font-weight: 600;
+}
+
+.bszn-list {
+	padding: 30px 30px 0;
+}
+
+.bszn-list .list-title {
+	float: left;
+	color: #3b7cdc;
+	font-weight: 600;
+	padding: 10px 0 6px 0;
+	margin-top: -15px;
+}
+
+.bszn-list table {
+	background-color: #f7f9fc;
+}
+
+a {
+	cursor: pointer;
+}
+
+/** 下拉多选框 */
+::-webkit-scrollbar {
+	width: 9px;
+	height: 9px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: #ebebeb;
+	-webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	height: 30px;
+	background-color: #ccc;
+	-webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	width: 30px;
+	background-color: #ccc;
+	-webkit-border-radius: 4px;
+}
+
+ul, li {
+	padding: 0;
+	margin: 0
+}
+
+.mySelect {
+	position: relative;
+}
+
+.mySelect .inputWrap {
+	width: 100%;
+	min-height: 30px;
+	border: 1px solid #d3d9e3;
+	position: relative;
+	cursor: pointer;
+}
+
+.mySelect ul {
+	padding: 0 5px;
+	margin: 0;
+	padding-right: 35px;
+}
+
+.mySelect ul, li {
+	list-style: none;
+}
+
+.mySelect li {
+	display: inline-block;
+	background: #eaeaea;
+	padding: 5px;
+	margin: 2px 2px 2px 0;
+	border-radius: 5px;
+}
+
+.mySelect .fa-close {
+	cursor: pointer;
+}
+
+.mySelect .fa-close:hover {
+	color: #237eff;
+}
+
+.mySelect .mySelect-option {
+	width: 100%;
+	border-bottom: 1px solid #d3d9e3;
+	border-right: 1px solid #d3d9e3;
+	border-left: 1px solid #d3d9e3;
+	max-height: 200px;
+	overflow-y: scroll;
+	position: absolute;
+	height: 0;
+	opacity: 0;
+	background: #ffffff;
+	z-index: 10;
+}
+
+.mySelect .mySelect-option div {
+	padding: 10px;
+}
+
+.mySelect .inputWrap>i {
+	position: absolute;
+	padding: 13px;
+	right: 0;
+	top: 0;
+}
+
+.mySelect-option div {
+	cursor: pointer;
+	border-bottom: 1px solid #e7e7e7;
+	margin: 5px;
+}
+
+.mySelect-option div i {
+	float: right;
+	color: #ffffff;
+}
+
+.mySelect-option div.selected {
+	background: #237eff;
+	color: #ffffff;
+	border-radius: 5px;
+}
+
+.mySelect-option div:hover {
+	background: #237eff;
+	color: #ffffff;
+	border-radius: 5px;
+}
+
+.fa {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
